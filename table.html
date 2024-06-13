@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Aurel - Tabel Produk</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-success text-white text-center py-3">
+        <h1>Toko Aurel</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-2 bg-light py-3">
+                <nav>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Input Produk</a></li>
+                        <li class="nav-item"><a class="nav-link" href="table.html">Tabel Produk</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="col-md-10 py-3">
+                <section id="tabel-produk">
+                    <h2>Tabel Produk</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Kode Produk</th>
+                                <th>Nama Produk</th>
+                                <th>Harga Produk</th>
+                                <th>Jumlah Produk</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produk-body">
+                            <!-- Data produk akan ditambahkan di sini -->
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+        </div>
+    </div>
+    <footer class="bg-success text-white text-center py-3">
+        <p>&copy; 2024 Toko Aurel. All rights reserved.</p>
+    </footer>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ambil data produk dari Local Storage
+            let produkList = JSON.parse(localStorage.getItem('produkList')) || [];
+            
+            // Ambil elemen tbody
+            const produkBody = document.getElementById('produk-body');
+            
+            // Tambahkan setiap produk ke dalam tabel
+            produkList.forEach(function(produk) {
+                const row = document.createElement('tr');
+                
+                const kodeCell = document.createElement('td');
+                kodeCell.textContent = produk.kode;
+                row.appendChild(kodeCell);
+                
+                const namaCell = document.createElement('td');
+                namaCell.textContent = produk.nama;
+                row.appendChild(namaCell);
+                
+                const hargaCell = document.createElement('td');
+                hargaCell.textContent = produk.harga;
+                row.appendChild(hargaCell);
+                
+                const jumlahCell = document.createElement('td');
+                jumlahCell.textContent = produk.jumlah;
+                row.appendChild(jumlahCell);
+                
+                produkBody.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toko Aurel - Input Produk</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="bg-success text-white text-center py-3">
+        <h1>Toko Aurel</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <aside class="col-md-2 bg-light py-3">
+                <nav>
+                    <ul class="nav flex-column">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Input Produk</a></li>
+                        <li class="nav-item"><a class="nav-link" href="table.html">Tabel Produk</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            <main class="col-md-10 py-3">
+                <section id="input-produk">
+                    <h2>Input Produk</h2>
+                    <form id="product-form">
+                        <div class="form-group">
+                            <label for="kode-produk">Kode Produk:</label>
+                            <input type="text" class="form-control" id="kode-produk" name="kode-produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nama-produk">Nama Produk:</label>
+                            <input type="text" class="form-control" id="nama-produk" name="nama-produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="harga-produk">Harga Produk:</label>
+                            <input type="number" class="form-control" id="harga-produk" name="harga-produk" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah-produk">Jumlah Produk:</label>
+                            <input type="number" class="form-control" id="jumlah-produk" name="jumlah-produk" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Tambah Produk</button>
+                    </form>
+                </section>
+            </main>
+        </div>
+    </div>
+    <footer class="bg-success text-white text-center py-3">
+        <p>&copy; 2024 Toko Aurel. All rights reserved.</p>
+    </footer>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('product-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Ambil nilai dari form
+            const kodeProduk = document.getElementById('kode-produk').value;
+            const namaProduk = document.getElementById('nama-produk').value;
+            const hargaProduk = document.getElementById('harga-produk').value;
+            const jumlahProduk = document.getElementById('jumlah-produk').value;
+            
+            // Buat objek produk
+            const produk = {
+                kode: kodeProduk,
+                nama: namaProduk,
+                harga: hargaProduk,
+                jumlah: jumlahProduk
+            };
+            
+            // Ambil data produk dari Local Storage
+            let produkList = JSON.parse(localStorage.getItem('produkList')) || [];
+            
+            // Tambahkan produk baru ke dalam list
+            produkList.push(produk);
+            
+            // Simpan kembali ke Local Storage
+            localStorage.setItem('produkList', JSON.stringify(produkList));
+            
+            // Reset form
+            document.getElementById('product-form').reset();
+        });
+    </script>
+</body>
+</html>
